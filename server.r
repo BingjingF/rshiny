@@ -1,9 +1,9 @@
-function(input,output){
+shinyServer(function(input,output){
   
   output$line1<-renderPlot({
     
     dat.sub.n <- dat.referrals[ dat.referrals$Learner.Need == input$need , ]
-    
+    dat.referrals$month <- month
     t.need.sub <- tapply( dat.sub.n$Learner.Need, dat.sub.n$month, length )
     t.need.sub[ is.na(t.need.sub) ] <- 0
     
@@ -14,4 +14,9 @@ function(input,output){
     segments(x0=seq(1,12,1),y0=0,x1=seq(1,12,1),y1=t.need.sub,col="gray",lty=3)
   })
   
-}
+  output$summary <- renderPrint({
+    table(dat.referrals$Learner.Need,month)
+    
+  })
+  
+})
