@@ -30,8 +30,16 @@ shinyUI(fluidPage(
                        selectInput(inputId = "need", 
                                    label = "Reasons for Referral:", 
                                    choices = unique( dat.referrals$Learner.Need)))),
+      conditionalPanel('input.datset==="referrals"',
+                       selectInput("referrals", "1. Select the agency:",  
+                                 choices = unique( dat$Referred.To))),
+      
     mainPanel = (tabsetPanel(id='dataset',
                              tabPanel("Needs",plotOutput("line1"))
+                             
+                (tabsetPanel(id='dataset',
+                             tabPanel("Referrals",plotOutput("line"))            
+                             
                             ) )
     ))
   )
