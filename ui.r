@@ -1,4 +1,4 @@
-ui<-fluidPage(
+fluidPage(
   titlePanel('Central New York Community Foundation CNY'),
   
   sidebarLayout(
