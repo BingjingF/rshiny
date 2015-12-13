@@ -1,4 +1,4 @@
-server<-function(input,output){
+function(input,output){
   
   output$line1<-renderPlot({
     
