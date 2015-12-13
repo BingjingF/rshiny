@@ -21,7 +21,7 @@ month <- factor( month,
                  levels=c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"))
 
 
-fluidPage(
+shinyUI(fluidPage(
   titlePanel('Central New York Community Foundation CNY'),
   
   sidebarLayout(
@@ -29,5 +29,10 @@ fluidPage(
       selectInput(inputId = "need", 
                                 label = "Reasons for Referral:", 
                                 choices = unique( dat.referrals$Learner.Need))),
-    mainPanel = ( plotOutput("line1"))))
+    mainPanel = (tabsetPanel(type="tabs",
+                             tabPanel("Plot",plotOutput("line1")),
+                             tabPanel("Summary",verbatimTextOutput("summary"))) )
+    ))
+  )
+
 
