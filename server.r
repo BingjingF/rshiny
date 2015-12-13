@@ -13,10 +13,6 @@ shinyServer(function(input,output){
     axis( 1, at=1:12, labels=names(t.need.sub), cex.axis=0.7 ) 
     segments(x0=seq(1,12,1),y0=0,x1=seq(1,12,1),y1=t.need.sub,col="gray",lty=3)
   })
-  
-  output$summary <- renderPrint({
-    table(dat.referrals$Learner.Need,month)
-    
-  })
+
   
 })
