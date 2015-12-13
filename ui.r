@@ -25,13 +25,14 @@ shinyUI(fluidPage(
   titlePanel('Central New York Community Foundation CNY'),
   
   sidebarLayout(
-    sidebarPanel = (
-      selectInput(inputId = "need", 
-                                label = "Reasons for Referral:", 
-                                choices = unique( dat.referrals$Learner.Need))),
-    mainPanel = (tabsetPanel(type="tabs",
-                             tabPanel("Plot",plotOutput("line1")),
-                             tabPanel("Summary",verbatimTextOutput("summary"))) )
+    sidebarPanel(
+      conditionalPanel('input.dataset==="needs"',
+                       selectInput(inputId = "need", 
+                                   label = "Reasons for Referral:", 
+                                   choices = unique( dat.referrals$Learner.Need)))),
+    mainPanel = (tabsetPanel(id='dataset',
+                             tabPanel("Needs",plotOutput("line1"))
+                            ) )
     ))
   )
 
