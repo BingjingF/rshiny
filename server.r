@@ -12,7 +12,25 @@ shinyServer(function(input,output){
     text( 1:12, t.need.sub, labels=names(t.need.sub), cex=0.8, pos=3 )
     axis( 1, at=1:12, labels=names(t.need.sub), cex.axis=0.7 ) 
     segments(x0=seq(1,12,1),y0=0,x1=seq(1,12,1),y1=t.need.sub,col="gray",lty=3)
+    
   })
-
   
+  output$line <- renderPlot({   
+    
+    # to drill down to specific learner types subset by your input values
+    
+    dat.sub <- dat.referrals[ dat.referrals$Referred.To == input$referrals , ]
+    
+    t.referrals.sub <- tapply( dat.sub$Referred.To, dat.sub$month, length )
+    
+    t.referrals.sub[ is.na(t.referrals.sub) ] <- 0
+    
+    # time series
+    
+    plot( t.referrals.sub, xlab = "Months", ylab = "Number of referrals", type="b", pch=19, xaxt="n", xlim=c(0,13), ylim=c(0,max(t.referrals.sub)+3), bty="n", main="Trend of monthly referrals per agencies from CNY Foundation", col="green" )
+    
+    axis( 1, at=1:12, labels=names(t.referrals), cex.axis=0.7 )
+
+})}
+
 })
