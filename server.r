@@ -18,6 +18,7 @@ shinyServer(function(input,output){
   output$line <- renderPlot({   
     
     dat.sub <- dat.referrals[ dat.referrals$Referred.To == input$referrals , ]
+    dat.referrals$month <- month
     t.referrals.sub <- tapply( dat.sub$Referred.To, dat.sub$month, length )
     t.referrals.sub[ is.na(t.referrals.sub) ] <- 0
     
