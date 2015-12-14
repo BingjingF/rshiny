@@ -32,7 +32,7 @@ shinyServer(function(input,output){
     plot( t.need.sub,xlab="Month",ylab="Number of Reasons", type="b",
           pch=19, xaxt="n", xlim=c(0,13), ylim=c(0,max(t.need.sub)+3), bty="n",col="steelblue" )
     text( 1:12, t.need.sub, labels=names(t.need.sub), cex=1, pos=3 )
-    axis( 1, at=1:12, labels=names(t.need.sub), cex.axis=0.7 ) 
+    axis( 1, at=1:12, labels=names(t.need.sub), cex.axis=1 ) 
     segments(x0=seq(1,12,1),y0=0,x1=seq(1,12,1),y1=t.need.sub,col="gray",lty=3)
     segments(x0=0,y0=t.need.sub,x1=1:12,y1=t.need.sub,col="gray",lty=3)
   })
@@ -47,7 +47,7 @@ shinyServer(function(input,output){
     # time series
     plot( t.referrals.sub, xlab= "Months", ylab= "Number of Referrals", type="b", pch=19, xaxt="n", xlim=c(0,13), ylim=c(0,max(t.referrals.sub)+3), bty="n" ,col="red")
     text( 1:12, t.referrals.sub , labels=names(t.referrals.sub), cex=1, pos=3 )
-    axis( 1, at=1:12, labels=names(t.referrals.sub), cex.axis=0.7 )
+    axis( 1, at=1:12, labels=names(t.referrals.sub), cex.axis=1 )
     segments(x0=seq(1,12,1),y0=0,x1=seq(1,12,1),y1=t.referrals.sub,col="gray",lty=3)
   })
   output$relationship <- renderPlot({
