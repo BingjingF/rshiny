@@ -42,7 +42,7 @@ shinyUI(fluidPage(
                        checkboxGroupInput('show_agencies', 
                                           'Referred agencies to show:', 
                                           unique(dat.referrals$Referred.To),
-                                          selected = levels(dat.referrals$Referred.To)))
+                                          selected = unique(dat.referrals$Referred.To)))
       ),
     
     mainPanel = (tabsetPanel(id='dataset',
