@@ -33,13 +33,24 @@ shinyUI(fluidPage(
       conditionalPanel('input.dataset==="Referrals"',
                        selectInput(inputId = "referrals",
                                    label = "Agency:", 
-                                   choices = unique( dat.referrals$Referred.To)))
+                                   choices = unique( dat.referrals$Referred.To))),
+      conditionalPanel('input.dataset==="Relationships"',
+                       checkboxGroupInput('show_refs', 
+                                          'Referral sources to show:', 
+                                          levels(dat.referrals$Referred.By.1), 
+                                          selected = levels(dat.referrals$Referred.By.1)),
+                       checkboxGroupInput('show_agencies', 
+                                          'Referred agencies to show:', 
+                                          levels(dat.referrals$Referred.To), 
+                                          selected = levels(dat.referrals$Referred.To)))
       ),
     
     mainPanel = (tabsetPanel(id='dataset',
                              tabPanel("Reasons",plotOutput("line1")),
                 
-                             tabPanel("Referrals",plotOutput("line"))
+                             tabPanel("Referrals",plotOutput("line")),
+                             
+                             tabPanel("Relationships", plotOutput("relationship"))
                              )
     ))
   ))
