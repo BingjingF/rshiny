@@ -31,7 +31,7 @@ shinyServer(function(input,output){
     
     plot( t.need.sub,xlab="Month",ylab="Number of Reasons", type="b",
           pch=19, xaxt="n", xlim=c(0,13), ylim=c(0,max(t.need.sub)+3), bty="n",col="steelblue" )
-    text( 1:12, t.need.sub, labels=names(t.need.sub), cex=0.8, pos=3 )
+    text( 1:12, t.need.sub, labels=names(t.need.sub), cex=1, pos=3 )
     axis( 1, at=1:12, labels=names(t.need.sub), cex.axis=0.7 ) 
     segments(x0=seq(1,12,1),y0=0,x1=seq(1,12,1),y1=t.need.sub,col="gray",lty=3)
     segments(x0=0,y0=t.need.sub,x1=1:12,y1=t.need.sub,col="gray",lty=3)
@@ -45,9 +45,10 @@ shinyServer(function(input,output){
     t.referrals.sub[ is.na(t.referrals.sub) ] <- 0
     
     # time series
-    plot( t.referrals.sub, type="b", pch=19, xaxt="n", xlim=c(0,13), ylim=c(0,max(t.referrals.sub)+3), bty="n" ,col="darkred")
-    text( 1:12, t.referrals.sub , labels=names(t.referrals.sub), cex=0.8, pos=3 )
+    plot( t.referrals.sub, type="b", pch=19, xaxt="n", xlim=c(0,13), ylim=c(0,max(t.referrals.sub)+3), bty="n" ,col="red")
+    text( 1:12, t.referrals.sub , labels=names(t.referrals.sub), cex=1, pos=3 )
     axis( 1, at=1:12, labels=names(t.referrals.sub), cex.axis=0.7 )
+    segments(x0=seq(1,12,1),y0=0,x1=seq(1,12,1),y1=t.referrals.sub,col="gray",lty=3)
   })
   output$relationship <- renderPlot({
   
@@ -55,7 +56,10 @@ shinyServer(function(input,output){
   dat.referrals.subset <- NULL
   dat.referrals.subset <- dat.referrals[dat.referrals$Referred.By.1 == input$show_refs, ]
   counts <- table(dat.referrals.subset$Referred.To, dat.referrals.subset$Referred.By.1)
-  barplot(counts, xlim=c(0,6), ylim = c(0,15), main="Relationship Between Referral Source and Referral Agency",
-      xlab="Referral Sources", col=c("darkblue","darkorange1", "gray", "mediumorchid3", "red", "wheat1", "lawngreen"))
+  barplot(counts, 
+          xlim=c(0,6), ylim = c(0,15), 
+          main="Relationship Between Referral Source and Referral Agency",
+          xlab="Referral Sources", 
+          col=c("darkblue","darkorange1", "gray", "mediumorchid3", "red", "wheat1", "lawngreen"))
   })
   })
