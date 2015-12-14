@@ -26,23 +26,23 @@ shinyUI(fluidPage(
   
   sidebarLayout(
     sidebarPanel(
-      conditionalPanel('input.dataset==="needs"',
+      conditionalPanel('input.dataset==="Needs"',
                        selectInput(inputId = "need", 
                                    label = "Reasons for Referral:", 
-                                   choices = unique( dat.referrals$Learner.Need)))),
-      conditionalPanel('input.datset==="referrals"',
-                       selectInput(inputId = "referrals", 
-                                   label = "1. Select the agency:",  
-                                   choices = unique( dat.referrals$Referred.To)))),
-      
+                                   choices = unique( dat.referrals$Learner.Need))),
+      conditionalPanel('input.dataset==="Referrals',
+                       selectInput(inputId = "referrals",
+                                   label = "Agency:", 
+                                   choices = unique( dat.referrals$Referred.To)))
+      ),
+    
     mainPanel = (tabsetPanel(id='dataset',
-                             tabPanel("Needs",plotOutput("line1"))
-                             
-                (tabsetPanel(id='dataset',
-                             tabPanel("Referrals",plotOutput("line"))            
-                             
-                            ) )
+                             tabPanel("Needs",plotOutput("line1")),
+                
+                             tabPanel("Referrals",plotOutput("line"))
+                             )
     ))
-  )
+  ))
+
 
 
