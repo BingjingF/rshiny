@@ -46,6 +46,7 @@ shinyServer(function(input,output){
     
     # time series
     plot( t.referrals.sub, type="b", pch=19, xaxt="n", xlim=c(0,13), ylim=c(0,max(t.referrals.sub)+3), bty="n" ,col="darkred")
+    text( 1:12, t.referrals.sub , labels=names(t.referrals.sub), cex=0.8, pos=3 )
     axis( 1, at=1:12, labels=names(t.referrals.sub), cex.axis=0.7 )
   })
   output$relationship <- renderPlot({
