@@ -24,8 +24,8 @@ shinyServer(function(input,output){
   
   output$line1<-renderPlot({
     
-    dat.sub.n <- dat.referrals[ dat.referrals$Learner.Need == input$need , ]
     dat.referrals$month <- month
+    dat.sub.n <- dat.referrals[ dat.referrals$Learner.Need == input$need , ]
     t.need.sub <- tapply( dat.sub.n$Learner.Need, dat.sub.n$month, length )
     t.need.sub[ is.na(t.need.sub) ] <- 0
     
@@ -39,8 +39,8 @@ shinyServer(function(input,output){
   output$line <- renderPlot({   
     
     # to drill down to specific learner types subset by your input values
-    dat.sub <- dat.referrals[ dat.referrals$Referred.To == input$referrals , ]
     dat.referrals$month <- month
+    dat.sub <- dat.referrals[ dat.referrals$Referred.To == input$referrals , ]
     t.referrals.sub <- tapply( dat.sub$Referred.To, dat.sub$month, length )
     t.referrals.sub[ is.na(t.referrals.sub) ] <- 0
     
