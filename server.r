@@ -26,5 +26,14 @@ shinyServer(function(input,output){
     plot( t.referrals.sub, type="b", pch=19, xaxt="n", xlim=c(0,13), ylim=c(0,max(t.referrals.sub)+3), bty="n" ,col="darkred")
     axis( 1, at=1:12, labels=names(t.referrals.sub), cex.axis=0.7 )
   })
+  output$relationship <- renderPlot({
   
+  counts <- NA
+  dat.referrals.subset <- NA
+  dat.referrals.subset <- dat.referrals[dat.referrals$Referred.By.1 == input$show_refs, ]
+  counts <- table(dat.referrals.subset$Referred.To, dat.referrals.subset$Referred.By.1)
+  barplot(counts, main="Relationship Between Referral Source and Referral Agency",
+      xlab="Referral Sources", col=c("darkblue","darkorange1", "gray", "mediumorchid3", "red", "wheat1", "lawngreen"),
+ 	)
+  })
   })
