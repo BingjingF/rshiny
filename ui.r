@@ -1,24 +1,24 @@
-library(shiny)
-library(RCurl)
+#library(shiny)
+#library(RCurl)
 
-my.url <- "https://docs.google.com/spreadsheets/d/17_j1MnMg8S49B5K6duBqZttbolPtJ77VQxl8pLtGKTQ/pub?output=csv"
+#my.url <- "https://docs.google.com/spreadsheets/d/17_j1MnMg8S49B5K6duBqZttbolPtJ77VQxl8pLtGKTQ/pub?output=csv"
 
-referrals.raw <- getURL( my.url, ssl.verifypeer=FALSE )
+#referrals.raw <- getURL( my.url, ssl.verifypeer=FALSE )
 #data name: dat.referrals
-dat.referrals <- read.csv( textConnection(referrals.raw), stringsAsFactors=F )
+#dat.referrals <- read.csv( textConnection(referrals.raw), stringsAsFactors=F )
 
 #find out data type
-lapply( dat.referrals, class )
+#lapply( dat.referrals, class )
 
 #change date to month
-date <- as.Date(dat.referrals$Timestamp, "%m/%d/%Y")
+#date <- as.Date(dat.referrals$Timestamp, "%m/%d/%Y")
 
-month <- format( date, "%b")
+#month <- format( date, "%b")
 
 # you need to do this to ensure months are ordered correctly, default is alphabetic
 
-month <- factor( month, 
-                 levels=c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"))
+#month <- factor( month, 
+#                 levels=c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"))
 
 
 shinyUI(fluidPage(
