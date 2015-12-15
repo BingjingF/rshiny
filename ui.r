@@ -32,7 +32,7 @@ shinyUI(fluidPage(
                                    choices = unique( dat.referrals$Learner.Need))),
       conditionalPanel('input.dataset==="Referrals"',
                        selectInput(inputId = "referrals",
-                                   label = "Agency:", 
+                                   label = "Receiving Agency:", 
                                    choices = unique( dat.referrals$Referred.To))),
       conditionalPanel('input.dataset==="Relationships"',
                        checkboxGroupInput('show_refs', 
