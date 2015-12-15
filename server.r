@@ -67,6 +67,6 @@ shinyServer(function(input,output){
           xlim=c(0,6), ylim = c(0,60), 
           main="Relationship Between Referral Source and Referral Agency",
           xlab="Referral Sources", ylab="Number of Referrals",
-          col=c("darkblue","darkorange1", "gray", "mediumorchid3", "red", "wheat1", "lawngreen"))
+          col=c("darkblue","red", "seagreen4", "darkmagenta", "darkorange1", "yellow1", "lawngreen"))
   })
   })
