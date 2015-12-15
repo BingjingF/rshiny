@@ -64,7 +64,7 @@ shinyServer(function(input,output){
 #  dat.referrals.subset <- dat.referrals[dat.referrals$Referred.By.1 == input$show_refs, ]
   counts <- table(dat.referrals.subset$Referred.To, dat.referrals.subset$Referred.By.1)
   barplot(counts, 
-          xlim=c(0,6), ylim = c(0,15), 
+          xlim=c(0,6), ylim = c(0,60), 
           main="Relationship Between Referral Source and Referral Agency",
           xlab="Referral Sources", ylab="Number of Referrals",
           col=c("darkblue","darkorange1", "gray", "mediumorchid3", "red", "wheat1", "lawngreen"))
