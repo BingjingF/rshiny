@@ -53,8 +53,15 @@ shinyServer(function(input,output){
   output$relationship <- renderPlot({
   
   counts <- NULL
-  dat.referrals.subset <- NULL
-  dat.referrals.subset <- dat.referrals[dat.referrals$Referred.By.1 == input$show_refs, ]
+  
+  these.referrals <- ((dat.referrals$Referred.By.1 %in% input$show_refs) & (dat.referrals$Referred.To %in% input$show_agencies))
+  
+  dat.referrals.subset <- dat.referrals[these.referrals, ]
+  
+  table(dat.referrals.subset$Referred.To, dat.referrals.subset$Referred.By.1)
+  
+#  dat.referrals.subset <- NULL
+#  dat.referrals.subset <- dat.referrals[dat.referrals$Referred.By.1 == input$show_refs, ]
   counts <- table(dat.referrals.subset$Referred.To, dat.referrals.subset$Referred.By.1)
   barplot(counts, 
           xlim=c(0,6), ylim = c(0,15), 
