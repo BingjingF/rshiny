@@ -40,7 +40,7 @@ shinyUI(fluidPage(
                                           unique(dat.referrals$Referred.By.1),
                                           selected = unique(dat.referrals$Referred.By.1)),
                        checkboxGroupInput('show_agencies', 
-                                          'Referred agencies to show:', 
+                                          'Receiving agencies to show:', 
                                           unique(dat.referrals$Referred.To),
                                           selected = unique(dat.referrals$Referred.To)))
       ),
