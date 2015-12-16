@@ -77,9 +77,9 @@ shinyServer(function(input,output){
   # Chart the bar plot and the legend based on the counts matrix
   barplot(counts, 
           xlim=c(0,6), ylim = c(0,60), 
-          main="Relationship Between Referral Source and Referral Agency",
-          xlab="Referral Sources", ylab="Number of Referrals",
+          main="Relationship Between Referral Source and Receiving Agency",
+          xlab="Referral Sources", ylab="Number of Referrals to Receiving Agencies",
           col=agencies.colors)
-  legend("topright",fill=agencies.colors, legend=rownames(counts))
+  legend("topright",fill=agencies.colors, legend=rownames(counts), title="Receiving Agencies")
   })
   })
