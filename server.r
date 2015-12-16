@@ -51,22 +51,35 @@ shinyServer(function(input,output){
     segments(x0=seq(1,12,1),y0=0,x1=seq(1,12,1),y1=t.referrals.sub,col="gray",lty=3)
   })
   output$relationship <- renderPlot({
+
+  # Create a color vector
+  color.function <- colorRampPalette(
+    colors = c("red", "ghostwhite", "steelblue"),
+    space = "Lab" # Option used when colors do not represent a quantitative scale
+  )
   
+  num.colors <- length(unique(dat.referrals$Referred.To))
+
+  agencies.colors <- color.function(num.colors) 
+  
+  # Create a matrix of the two inputs and their counts
   counts <- NULL
   
+  # Create the selector vector - returns a TRUE value only when both columns are in the respective vectors of checkbox choices
   these.referrals <- ((dat.referrals$Referred.By.1 %in% input$show_refs) & (dat.referrals$Referred.To %in% input$show_agencies))
   
+  # Create a subset of the full data based on the selector vector
   dat.referrals.subset <- dat.referrals[these.referrals, ]
   
-  table(dat.referrals.subset$Referred.To, dat.referrals.subset$Referred.By.1)
-  
-#  dat.referrals.subset <- NULL
-#  dat.referrals.subset <- dat.referrals[dat.referrals$Referred.By.1 == input$show_refs, ]
+  # Create a table (matrix) of the two values and the counts 
   counts <- table(dat.referrals.subset$Referred.To, dat.referrals.subset$Referred.By.1)
+  
+  # Chart the bar plot and the legend based on the counts matrix
   barplot(counts, 
           xlim=c(0,6), ylim = c(0,60), 
           main="Relationship Between Referral Source and Referral Agency",
           xlab="Referral Sources", ylab="Number of Referrals",
-          col=c("darkblue","red", "seagreen4", "darkmagenta", "darkorange1", "yellow1", "lawngreen"))
+          col=agencies.colors)
+  legend("topright",fill=agencies.colors, legend=rownames(counts))
   })
   })
