@@ -37,11 +37,11 @@ shinyUI(fluidPage(
       conditionalPanel('input.dataset==="Relationships"',
                        checkboxGroupInput('show_refs', 
                                           'Referral sources to show:', 
-                                          unique(dat.referrals$Referred.By.1),
+                                          sort(unique(dat.referrals$Referred.By.1)),
                                           selected = unique(dat.referrals$Referred.By.1)),
                        checkboxGroupInput('show_agencies', 
                                           'Receiving agencies to show:', 
-                                          unique(dat.referrals$Referred.To),
+                                          sort(unique(dat.referrals$Referred.To)),
                                           selected = unique(dat.referrals$Referred.To)))
       ),
     
