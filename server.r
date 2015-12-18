@@ -1,9 +1,11 @@
+# Load Libraries
 library(shiny)
 library(RCurl)
 
+# Load form results from Google Spreadsheets to dat.referrals
 my.url <- "https://docs.google.com/spreadsheets/d/17_j1MnMg8S49B5K6duBqZttbolPtJ77VQxl8pLtGKTQ/pub?output=csv"
-
 referrals.raw <- getURL( my.url, ssl.verifypeer=FALSE )
+
 #data name: dat.referrals
 dat.referrals <- read.csv( textConnection(referrals.raw), stringsAsFactors=F )
 
